@@ -1,4 +1,4 @@
-from Easy.TwoSum import Solution
+from Easy.MaxConsecutiveOnes import Solution
 
-solution = Solution();
-print(solution.TwoSum(nums=[2, 12, 7, 15, 8, 11], target=26))
+solution = Solution()
+print(solution.findMaxConsecutiveOnes(nums=[1, 1, 0, 1, 1, 1]))
