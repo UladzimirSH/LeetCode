@@ -1,0 +1,34 @@
+from typing import List
+
+
+class Solution:
+    @staticmethod
+    def sorted_squares(nums: List[int]) -> List[int]:
+        if len(nums) == 0:
+            return []
+        if len(nums) == 1:
+            return [nums[0] ** 2]
+
+        begin_index = 0
+        end_index = len(nums) - 1
+        insert_index = len(nums) - 1
+
+        result = [None] * len(nums)
+        while begin_index != end_index:
+            begin_square_number = nums[begin_index] ** 2
+            end_square_number = nums[end_index] ** 2
+
+            if begin_square_number >= end_square_number:
+                result[insert_index] = begin_square_number
+                begin_index += 1
+            else:
+                result[insert_index] = end_square_number
+                end_index -= 1
+            insert_index -= 1
+        # the last index in the middle of the initial collection
+        result[insert_index] = nums[begin_index] ** 2;
+        return result
+
+
+solution = Solution()
+print(solution.sorted_squares([-4, -1, 0, 3, 10]))
