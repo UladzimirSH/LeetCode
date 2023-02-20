@@ -12,26 +12,32 @@ class Solution:
 
     def __init__(self):
         self.values = []
-    # def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+
+    # def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
     #     if root is None:
     #         return []
     #
     #     stack = []
     #     values = []
+    #     visited = {}
     #     stack.append(root)
     #
     #     while stack:
     #         node = stack.pop()
-    #         values.append(node.val)
-    #         if node.right:
-    #             stack.append(node.right)
-    #
-    #         if node.left:
+    #         visited[node] = 1
+    #         if node.left and node.left not in visited:
+    #             stack.append(node)
     #             stack.append(node.left)
+    #             continue
+    #         if node.right and node.right not in visited:
+    #             stack.append(node)
+    #             stack.append(node.right)
+    #             continue
     #
+    #         values.append(node.val)
     #     return values
 
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if root is None:
             return []
 
@@ -39,11 +45,11 @@ class Solution:
         return self.values
 
     def visitNode(self, node: TreeNode):
-        self.values.append(node.val)
         if node.left:
             self.visitNode(node.left)
         if node.right:
             self.visitNode(node.right)
+        self.values.append(node.val)
 
 
 node1 = TreeNode(1)
@@ -56,4 +62,4 @@ node3 = TreeNode(3, left=node4, right=node5)
 node2 = TreeNode(2, left=node1, right=node3)
 node6 = TreeNode(6, left=node2, right=node7)
 solution = Solution()
-print(solution.preorderTraversal(node6))  # [1, 4, 5, 3, 2, 9, 8, 7, 6]
+print(solution.postorderTraversal(node6)) # [1, 4, 5, 3, 2, 9, 8, 7, 6]
